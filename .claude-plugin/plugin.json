@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "robntex",
+  "displayName": "RobNTex",
+  "version": "0.1.0",
+  "description": "RobNTex (ROBIN eXecution) — agentic test-case execution for the ROBIN RCM platform. Reads structured test cases (Markdown or Excel), drives the ROBIN portal via a real browser, captures per-step evidence, and produces a Jira-ready defect report. Sequential (human-in-the-loop) or parallel (autonomous) execution modes.",
+  "author": {
+    "name": "Mhdgad",
+    "email": "mohamedgad9345@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "qa",
+    "testing",
+    "test-execution",
+    "robin",
+    "rcm",
+    "healthcare",
+    "jira",
+    "playwright",
+    "agentic",
+    "manual-testing"
+  ]
+}
