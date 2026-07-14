@@ -30,7 +30,7 @@ TC exactly as written.
 ## Quick start
 
 ```
-/plugin marketplace add Mhdgad/mhdgad-plugins
+/plugin marketplace add mohamedgad9345/mhdgad-plugins
 /plugin install robntex@mhdgad-plugins
 ```
 
