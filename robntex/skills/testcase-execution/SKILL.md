@@ -23,9 +23,6 @@ using that surface for the first time**, and again if something misbehaves:
   capture via `run-code`). Read before driving a browser.
 - **`${CLAUDE_PLUGIN_ROOT}/skills/testcase-execution/references/jira-bug-format.md`** — the
   exact bug block layout used in `bug-list.md`. Read before writing any defect.
-- **`${CLAUDE_PLUGIN_ROOT}/skills/testcase-execution/references/auth-and-secrets.md`** — the
-  rules for reading `ROBIN_URL` / `ROBIN_USER` / `ROBIN_PASSWORD` from `.env` and logging
-  in as a preflight. Read before running any TC whose preconditions mention login.
 
 Always-on rules (full details in the files above):
 - All browser actions go through `playwright-cli`; **parallel runs MUST each use their own
@@ -118,8 +115,8 @@ Run end to end WITHOUT stopping for per-checkpoint approval; present the final r
 
 Autonomy boundary (applies in parallel mode): still never modify app source, never submit real
 claims / complete real enrollments, never print secrets, never use real patient PHI (use
-clearly-fake test data — e.g. `TEST-QID-001` rather than a real Qatar ID). If the overall
-scope is ambiguous, ask once before dispatching; otherwise proceed without pausing.
+disposable Emirates IDs like `784-XXXX-XXXXXXX-X`). If the overall scope is ambiguous, ask
+once before dispatching; otherwise proceed without pausing.
 
 ## Reporting
 Two files, both inside the run folder:
@@ -138,9 +135,7 @@ Two files, both inside the run folder:
 - In **sequential mode**, never proceed past a checkpoint without an explicit "go" / "approved".
   In **parallel mode**, do not pause for checkpoints — run autonomously within the autonomy
   boundary above.
-- Never read or print secrets. The ONLY exception is the three whitelisted app auth vars
-  (`ROBIN_URL`, `ROBIN_USER`, `ROBIN_PASSWORD`) — read per `references/auth-and-secrets.md`,
-  used to log in, and **never printed** to shell / logs / reports / screenshots.
+- Never read or print secrets (`.env`, tokens, credentials, real patient data).
 - Never modify application source code. You may write test notes/artifacts only.
 - Never invent steps that aren't in the TC. If a step is ambiguous, ask the user — do not
   guess. This is a critical difference from AgenTeX: RobNTex executes the TC as written.

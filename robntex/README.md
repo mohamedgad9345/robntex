@@ -9,12 +9,6 @@ Sequential (human-in-the-loop) by default; parallel autonomous mode for regressi
 The agent **never modifies your application code** and **never invents steps** — it runs the
 TC exactly as written.
 
-> **Country-agnostic.** RobNTex ships with Qatar-context sample TCs (Qatar ID as the member
-> identifier), but the plugin doesn't hard-code any country, regulator, or payer. The
-> modules, payer codes, identifier formats, and priority-mapping wording are all editable
-> per-deployment — see [`MODULES.md`](./MODULES.md) and the two reference files under
-> `skills/testcase-execution/references/`.
-
 ### What works today (Level 1)
 
 | Capability | Status |
@@ -30,7 +24,7 @@ TC exactly as written.
 ## Quick start
 
 ```
-/plugin marketplace add mohamedgad9345/mhdgad-plugins
+/plugin marketplace add MhdGad/mhdgad-plugins
 /plugin install robntex@mhdgad-plugins
 ```
 
@@ -54,7 +48,6 @@ See [One-time setup](#one-time-setup) for the Playwright + permissions steps.
 | Reference | `skills/testcase-execution/references/playwright-cli.md` | The browser driver — setup & gotchas |
 | Reference | `skills/testcase-execution/references/jira-bug-format.md` | The Jira-ready bug block layout |
 | Reference | `skills/testcase-parsing/references/excel-parsing.md` | `openpyxl` reading pattern, grouping by TC-ID, gotchas |
-| Reference | `MODULES.md` | The team's living catalog of ROBIN modules — grows as we encounter new ones |
 | Command | `commands/init-execution.md` | `/init-execution` — scaffold sample TCs + `executions/` |
 | Command | `commands/execute-tc.md` | `/execute-tc <suite \| file \| TC-IDs>` — run |
 | Permissions | `settings.example.json` | Recommended permission rules for the project |
@@ -112,7 +105,7 @@ single failing step instead of a whole scenario.
   > `/execute-tc suite1/ parallel` — expect ~6–8 browser sessions concurrent, rest queue.
 
 - **Single TC or filtered list:**
-  > `/execute-tc suite1/ROBIN-1001-eligibility-valid-qatar-id.md`
+  > `/execute-tc suite1/ROBIN-1001-eligibility-valid-emirates-id.md`
   > `/execute-tc suite1/ ROBIN-1001, ROBIN-2002`
 
 - **Override target URL inline:**

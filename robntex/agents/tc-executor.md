@@ -63,23 +63,15 @@ npx playwright-cli -s={{SESSION}} console error > {{SESSION_DIR}}/logs/{{TC.id}}
 For the TC given to you:
 
 1. **Preflight**
-   - Confirm `TC.preconditions` are satisfiable at the target URL.
-   - **If a precondition mentions login / authenticated user state:** perform the login
-     preflight per `${CLAUDE_PLUGIN_ROOT}/skills/testcase-execution/references/auth-and-secrets.md`
-     — read `ROBIN_URL` / `ROBIN_USER` / `ROBIN_PASSWORD` from the environment, log in
-     ONCE in this session, and verify the landing page. Login is NOT part of the TC's
-     steps.
-     - If any of the three auth vars is missing/empty → STOP with `BLOCKED — missing credentials`.
-     - If login fails after 3 attempts → STOP with `BLOCKED — login failed`.
-   - For non-auth preconditions that need data you don't have (a payer that must exist,
-     a specific patient record, etc.), STOP and report `BLOCKED — <what's missing>`. Do
-     NOT invent data or create it.
-   - Take an initial snapshot of the landing / dashboard page before starting TC step 1.
+   - Confirm `TC.preconditions` are satisfiable at the target URL. If a precondition requires
+     data you don't have (a real login, a payer that must exist), stop and report it as
+     `BLOCKED` in your output — do NOT invent credentials or create data.
+   - Open the browser session on `TARGET_URL`, take an initial snapshot.
 
 2. **Run steps in order**
    - For each `step` in `TC.steps` (already sorted by `n`):
      a. **Take the action** exactly as written in `step.action`. Reference `TC.test_data`
-        for named values (e.g. `TC.test_data.qatarId`).
+        for named values (e.g. `TC.test_data.emiratesId`).
      b. **Screenshot** to `screenshots/{{TC.id}}/step-<n>.png` — always, PASS or FAIL.
      c. **Evaluate** the outcome against `step.expected`. Verify visible state via `eval` on
         computed style/visibility — NEVER trust that text exists in the DOM (may be static
@@ -99,12 +91,9 @@ For the TC given to you:
 
 - Execute steps in the order given by `step.n` — no reordering, no skipping, no adding steps.
 - Skip auth-gated destructive actions: **no real claim submission, no real enrollment, no
-  real payment**. Validation-only checks are allowed. Use clearly-fake test data
-  (`qa.tester@example.com`, `TEST-QID-001`) — never real patient/national IDs.
-- **Never** read or print secrets. The ONLY exception is the three whitelisted auth vars
-  (`ROBIN_URL`, `ROBIN_USER`, `ROBIN_PASSWORD`) — used for login per `auth-and-secrets.md`,
-  never echoed to shell / logs / reports / screenshots. All other `.env` values, tokens,
-  and real patient PHI stay off-limits.
+  real payment**. Validation-only checks are allowed. Use disposable data
+  (`qa.tester@example.com`, masked Emirates IDs like `784-XXXX-XXXXXXX-X`).
+- **Never** read or print secrets (`.env`, tokens, real patient PHI).
 - If a step's `action` is ambiguous (missing selector, unclear button label), STOP and
   return `AMBIGUOUS` for that step — do not guess. The orchestrator will surface it to the
   user.
