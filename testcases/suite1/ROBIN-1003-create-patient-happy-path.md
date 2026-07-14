@@ -36,7 +36,7 @@
 
 | # | Action | Expected |
 |---|--------|----------|
-| 1 | Navigate to **Patient Management → New Patient** (adjust to the actual menu path in ROBIN). | The New Patient form is displayed with the required-field indicators visible on Qatar ID, First Name, Last Name, DOB, and Payer. |
+| 1 | Navigate to **Definitions → Patients → +Add Patient** (adjust to the actual menu path in ROBIN). | The New Patient form is displayed with the required-field indicators visible on Qatar ID, First Name, Last Name, DOB, and Payer. |
 | 2 | In the Personal Info section, fill: Qatar ID `TEST-QID-CREATE-{RUN_TS}`, First Name `Ahmed`, Last Name `TestPatient`, DOB `1990-01-15`, Gender `Male`, Nationality `Qatari`. | Fields accept the values. QID field passes format validation (no inline error). DOB field shows the parsed date. |
 | 3 | In the Contact section, fill: Phone `+974-XXXXXXXX`, Email `qa.tester@example.com`. | Phone field accepts the +974 format without error. Email field passes format validation. |
 | 4 | In the Insurance section, select payer `<PAYER-CODE-FROM-DB>` from the dropdown and enter Membership Number `MEM-TEST-001`. | Payer field shows the selected value; Membership Number field is enabled and accepts the value. Effective/Expiry Date fields default to reasonable values (today / today+1y) or become mandatory as per the payer's setup. |

@@ -1,0 +1,24 @@
+{
+  "name": "robntex",
+  "version": "1.0.0",
+  "description": "**RobNTex** (ROBIN eXecution) takes the manual grind out of **executing test cases** against the ROBIN Revenue Cycle Management platform. You keep authoring TCs the way you already do (Markdown or Excel); RobNTex reads them, drives the ROBIN portal in a real browser, captures **per-step evidence**, and produces a **Jira-ready defect report** linked back to your TC-IDs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedgad9345/robntex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mohamedgad9345/robntex/issues"
+  },
+  "homepage": "https://github.com/mohamedgad9345/robntex#readme",
+  "devDependencies": {
+    "@playwright/cli": "^0.1.17"
+  }
+}
