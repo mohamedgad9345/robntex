@@ -150,4 +150,4 @@ Every defect in `bug-list.md` is a self-contained Jira Create Issue payload:
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+MG — see [LICENSE](./LICENSE).
